@@ -1,0 +1,18 @@
+.userInfo{
+    width:7.16rem;
+    height:2.5rem;
+    background:rgba(255,255,255,1);
+    box-shadow:-0.04rem 0.04rem 0.13rem 0rem rgba(0, 0, 0, 0.09);
+    border-radius:0.1rem;
+    margin-left: 0.17rem;
+    padding-left: 0.3rem;
+    padding-top: 0.31rem;
+    margin-top: 0.23rem;
+}
+.userInfo p{
+    font-size:0.3rem;
+    font-family:PingFang SC;
+    font-weight:400;
+    color:rgba(51,51,51,1);
+    margin-bottom: 0.52rem;
+}

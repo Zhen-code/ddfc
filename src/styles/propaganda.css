@@ -1,0 +1,16 @@
+.container{
+    width:7.5rem;
+    background-color: #B2B2B2;
+    padding-left: 0.09rem;
+    text-align: center;
+}
+.img{
+    width: 7.5rem;
+    height: 4rem;
+    background-color: #A6A6A6;
+}
+.content{
+    color: #FFFFFF;
+    font-size: 0.16rem;
+    background-color:#B2B2B2;
+}

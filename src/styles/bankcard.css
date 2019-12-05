@@ -1,0 +1,47 @@
+.container{
+    padding-left: 15px;
+}
+.bank_card{
+    width: 345px;
+    height: 80px;
+    background-color: bisque;
+}
+.get_code{
+    width:345px;
+    height:50px;
+    background:rgba(255,255,255,1);
+    box-shadow:0px 0px 20px 0px rgba(0, 0, 0, 0.1);
+    border-radius:10px;
+    line-height: 50px;
+}
+.get_Input{
+    font-size: 15px;
+    border: none;
+    display: inline;
+    vertical-align: middle;
+    padding-left: 13px;
+    outline: none;
+}
+.btn{
+    display: inline;
+    width: 509px;
+    height: 11px;
+    font-size: 12px;
+    vertical-align: middle;
+    color: #0072FF;
+    margin-left:60px ;
+}
+.commit{
+    width:345px;
+    height:48px;
+    background:rgba(0,114,255,1);
+    box-shadow:0px 3px 12px 0px rgba(0,114,255,0.82);
+    border-radius:24px;
+    line-height: 48px;
+    margin-top:9px;
+    font-size:16px;
+    font-family:PingFang SC;
+    font-weight:400;
+    color:rgba(255,255,255,1);
+    text-align: center;
+}

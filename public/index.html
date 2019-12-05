@@ -8,6 +8,22 @@
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json"/>
     <title></title>
 </head>
+<script>
+    !(function(doc, win) {
+        var docEle = doc.documentElement,
+            evt = "onorientationchange" in window ? "orientationchange" : "resize",
+            fn = function() {
+                var width = docEle.clientWidth;
+                width = width < 375 ? 375 : width;
+                width = width > 750 ? 750 : width;
+                width && (docEle.style.fontSize = 100 * (width / 750) + "px");
+            };
+
+        win.addEventListener(evt, fn, false);
+        doc.addEventListener("DOMContentLoaded", fn, false);
+
+    }(document, window));
+</script>
 <body>
 <noscript>You need to enable JavaScript to run this app.</noscript>
 <div id="root"></div>

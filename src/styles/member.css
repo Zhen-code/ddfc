@@ -1,0 +1,58 @@
+.role_list{
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    height: 1rem;
+    width: 7.5rem;
+    position: relative;
+}
+.role_list li{
+    width: 30%;
+    font-size: 0.35rem;
+    text-align: center;
+}
+.role_list span{
+    font-size: 0.4rem;
+}
+.recommend span{
+    font-size: 0.3rem;
+}
+.recommend .number{
+    color: deeppink;
+    font-size: 0.5rem;
+}
+.recommend span:nth-child(1){
+    margin-left:0.81rem ;
+}
+.recommend span:nth-child(2){
+    margin-left: 2rem;
+}
+.people_count{
+    font-size: 15px;
+    color: deeppink;
+    display: inline;
+}
+.recommend_list{
+    padding-top: 0.5rem;
+    width: 7.12rem;
+    height: 1.27rem;
+    font-size: 15px;
+    padding-left: 0.5rem;
+    box-shadow: 3px 3px 6.5px #ccc ;
+    margin-top: 18px;
+}
+.recommend_list p:nth-child(2){
+    margin-top: 0.32rem;
+}
+.recommend_list .time{
+    margin-left: 1.3rem;
+    margin-top: 0.16rem;
+}
+.active{
+    background-color: #0072FF;
+    width: 100px;
+    height: 0.07rem;
+    position: absolute;
+    left:16px ;
+    top: 45px;
+}
