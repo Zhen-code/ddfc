@@ -1,0 +1,71 @@
+.role_list{
+    width: 375px;
+    height: 50px;
+    padding: 18px 25px;
+    font-size: 15px;
+    font-family:PingFang SC;
+    font-weight:400;
+    color:rgba(51,51,51,1);
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    background:rgba(255,255,255,1);
+    box-shadow:-2px 2px 7px 0px rgba(0, 0, 0, 0.04);
+}
+.role_list li{
+    position: relative;
+    height:7px;
+    border-radius:4px;
+}
+.role_list li+span{
+    display: inline-block;
+    width:1px;
+    height:26px;
+    border:1px solid rgba(225,225,225,1);
+}
+.line{
+    width:120px;
+    height:4px;
+    background:rgba(0,114,255,1);
+    border-radius:2px;
+    position: absolute;
+    top: 45px;
+}
+.recommend{
+    width: 375px;
+    padding: 23px 40px;
+    display: flex;
+    justify-content: space-around;
+    font-size:15px;
+    font-family:PingFang SC;
+    font-weight:400;
+}
+.recommend div{
+    white-space: nowrap;
+}
+.recommend div span{
+    font-size:23px ;
+    font-family:PingFang SC;
+    font-weight:400;
+    color:#FF0000 ;
+}
+.recommend_List{
+    width: 100vw;
+    padding: 0 10px;
+}
+.recommend_List .item{
+    width: 356px;
+    padding: 14px 46px 13px 20px;
+    display: flex;
+    flex-direction: column;
+    background:rgba(255,255,255,1);
+    box-shadow:-2px 2px 7px 0px rgba(0, 0, 0, 0.09);
+    border-radius:5px;
+    align-content: space-between;
+}
+.recommend_List .item div:nth-child(1){
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
