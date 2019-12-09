@@ -1,0 +1,124 @@
+.container{
+    background: #EDEDED;
+    padding: 6px 1% 0px 1%;
+}
+.info{
+    width: 100%;
+    background: #FFFFFF;
+    padding: 20px 13px 21px 13px ;
+}
+.info div{
+    display: flex;
+    justify-content: space-between;
+}
+.info div p{
+    display: flex;
+    align-items: flex-end;
+}
+.info div input{
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #E1E1E1;
+}
+.add_invite{
+    width: 60px;
+    height: 30px;
+    background: #2aabd2;
+    padding-left: 10px;
+    padding-top: 5px;
+    color: #FFFFFF;
+}
+.selected{
+    padding: 13px 77% 10px 2%;
+}
+.FilletRectangle{
+    display: inline-block;
+    width:3px;
+    height:14px;
+    background:rgba(0,114,255,1);
+    border-radius:2px;
+    margin-right: 14px;
+}
+.list{
+    background: #FFFFFF;
+    padding: 6px 19px ;
+    list-style: none;
+}
+.listItem{
+    list-style: none;
+}
+.list .item{
+    border-bottom: 1px solid #E1E1E1;
+    margin-top: 17px;
+}
+.list .item p:nth-child(1){
+    display: flex;
+    justify-content: space-between;
+}
+.package div{
+    display: flex;
+    justify-content: space-between;
+}
+.package div label{
+    font-size: 13px;
+    color: #FF0000;
+}
+.package p{
+    text-align: right;
+}
+.package p label{
+    font-size: 13px;
+    color: #FF0000;
+}
+.pay p:nth-child(2){
+    display: flex;
+    justify-content: space-between;
+}
+.agree{
+    text-align: center;
+}
+.agree span{
+    font-size:12px;
+    font-family:PingFang SC;
+    font-weight:400;
+    color: #337ab7;
+    line-height:15px;
+}
+.gopay{
+     width: 300px;
+    height: 41px;
+    background: #0072FF;
+    font-size:15px;
+    font-family:PingFang SC;
+    font-weight:500;
+    color:rgba(255,255,255,1);
+    margin-top: 52px;
+    text-align: center;
+    line-height: 41px;
+}
+.checkRadio{
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+}
+.checkRadio:checked:before{
+    content: '';
+    width: 11px;
+    height: 11px;
+    border: 1px solid #ccc;
+    position: absolute;
+    border-radius: 50%;
+    background: #FFFFFF;
+}
+.checkRadio:checked:after{
+    content: '';
+    width: 5px;
+    height: 5px;
+    border: 2px solid #0072FF;
+    position: absolute;
+    border-radius: 50%;
+    left: 3px;
+    top: 3px;
+}
