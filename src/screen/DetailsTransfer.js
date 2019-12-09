@@ -1,18 +1,46 @@
 import React from 'react';
+import {Fragment} from 'react';
+import storage from '../util/setStorage'
 import Header from "../components/common/Header";
-import style from '../styles/detailstransfer.css';
+import style from '../styles/detailstransfer.module.css';
 import icon_jingbi from '../assets/image/icon_jingbi.png';
 export default class DetailsTransfer extends React.PureComponent{
     constructor(props) {
         super(props);
         this.state={
-
+            withdraw_log: []
         }
+        this.token=storage.getItem('token')
     }
+    componentDidMount() {
+           window.axios({
+               url: window.API.Withdraw.withdraw_log,
+               method: 'GET',
+               headers:{
+                   'Authorization': this.token
+               }
+           }).then(res=>{
+               console.log(res)
+               if(res.code===200){
+                   window.showToast('获取提现记录成功!');
+                   if(res.data.list.length===0){
+                    window.showToast('记录为空!')
+                   }else{
+                       this.setState({
+                           withdraw_log: res.data.list
+                       })
+                   }
+               }
+           }).catch(err=>{
+               console.log(err)
+           })
+    }
+
     render() {
         return(
-            <div>
+            <Fragment>
                 <Header/>
+            <div className={style.container}>
                 <ul className={style.list}>
                     <li className={style.item}>
                         <div className={style.image}>
@@ -36,6 +64,7 @@ export default class DetailsTransfer extends React.PureComponent{
                     </li>
                 </ul>
             </div>
+            </Fragment>
         )
     }
 }
