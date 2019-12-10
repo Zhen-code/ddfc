@@ -9,14 +9,16 @@ export default class MemberShipDeclaration extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            name: '',
-            phone: '',
-            inviteName: '',
-            checked: false,
-            orderList: [],
-            crowdfundingPrice: 0,
-            partPrice: 0,
-            countAll: 0
+            name: '',//真实姓名
+            phone: '',//手机号
+            inviteName: '',//邀请人手机号
+            isChecked: false,//是否勾选协议
+            orderList: [],//已选套餐列表
+            crowdfundingPrice: 0,//众筹房车总价
+            partPrice: 0,//单价
+            countAll: 0,//订单数量
+            balancePayment: 0,//尾款
+            crowdfundingCashPledgePrice: 0//众筹房车定金
         }
         this.token=storage.getItem('token')
         this.addInvite=this.addInvite.bind(this)
@@ -43,24 +45,19 @@ export default class MemberShipDeclaration extends React.PureComponent {
                 console.log(err)
         })
     }
-    change(e){
-        this.setState({
-            checked:  e.currentTarget.checked
-        })
-    }
     goPay(){
-        const {checked} =this.state;
-        if(checked){
-            window.axios({
-
-            })
+        const {isChecked} =this.state;
+        if(isChecked){
+           window.alert('进入支付')
         }else{
-            window.showToast('请先阅读并同意协议')
+            window.alert('请先阅读并同意协议');
+            return
         }
     }
     componentDidMount() {
+        let balancePayment=0,crowdfundingCashPledgePrice=0;
             window.axios({
-                url: window.API.Crowd_funding.order_list+'?pageIndex='+1+'&pageSize='+12,
+                url: window.API.Crowd_funding.order_list+'?pageIndex='+1+'&pageSize='+12,//查询已选订单
                 method: 'GET',
                 headers: {
                     'Authorization': this.token
@@ -68,21 +65,28 @@ export default class MemberShipDeclaration extends React.PureComponent {
             }).then(res=>{
                    const newList=res.data.list.filter(function (item) {
                         if(item.status==1){
-                            return item;
+                            return item;//获取已选套餐数组
                         }
-                   })
+                   });
+                   newList.map(item=>{
+                       balancePayment+= item.balancePayment;//获取尾款
+                       crowdfundingCashPledgePrice+=item.crowdfundingCashPledgePrice//获取定金
+                   });
                 this.setState({
                     orderList:newList,
-                    countAll: newList.length
-                })
-                console.log(newList)
+                    countAll: newList.length,
+                    balancePayment,
+                    crowdfundingCashPledgePrice
+                });
+                // console.log(newList)
             }).catch(err=>{
                 console.log(err)
             })
     }
 
     render() {
-        const {orderList,crowdfundingPrice,partPrice,countAll}=this.state
+        const {orderList,countAll,balancePayment,crowdfundingCashPledgePrice,isChecked}=this.state;
+        console.log(isChecked)
         return (
             <Fragment>
                 <Header/>
@@ -115,13 +119,13 @@ export default class MemberShipDeclaration extends React.PureComponent {
                         }
                         </ul>
                         <div className={style.package}>
-                            <div><span>共{countAll}个套餐包</span><span>支付订金：<label>¥7000.00元</label></span></div>
-                            <p>需支付尾款：<label>¥133000.00元</label></p>
+                            <div><span>共{countAll}个套餐包</span><span>支付订金：<label>¥{crowdfundingCashPledgePrice}元</label></span></div>
+                            <p>需支付尾款：<label>¥{balancePayment}元</label></p>
                         </div>
                         <div className={style.pay}>
                             <p>支付方式</p>
                             <p><span><img src={wcpay} alt={"支付"}/>微信支付</span><span><img src={icon_cs} alt={""}/></span></p>
-                            <p className={style.agree}><input type={"radio"} className={style.checkRadio} onChange={this.change.bind(this)}/>本人已阅读并同意<span>《嘟嘟平台服务协议》</span></p>
+                            <p className={style.agree}><input type={"radio"} className={style.checkRadio} checked={isChecked} onChange={(e)=>{this.setState({isChecked:true})}}/>本人已阅读并同意<span>《嘟嘟平台服务协议》</span></p>
                             <div className={style.gopay}  onClick={this.goPay}>去支付</div>
                         </div>
                     </div>

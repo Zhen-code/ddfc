@@ -24,8 +24,8 @@
     font-weight:400;
     color:rgba(56,56,56,1);
     display: flex;
-    justify-content: space-around;
-
+    justify-content: space-between;
+    padding: 30px 15px 15px 20px;
 }
 .time .income{
     font-size:0.4rem;
@@ -41,31 +41,18 @@
     margin-left: 0.22rem;
 }
 .list .item{
-    width: 6.75rem;
     border-bottom:1px solid rgba(225,225,225,1);
-    padding-left: 0.22rem;
-    margin-top: 0.27rem;
-    height: 1.15rem;
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 14px 14px 11px 11px;
 }
-.list .item p:nth-child(1){
-    font-size:0.28rem;
+.list .item div:nth-child(1){
+    display: flex;
+    justify-content: space-between;
+}
+.list .item div:nth-child(2){
+    font-size:11px;
     font-family:PingFang SC;
     font-weight:400;
-    color:rgba(51,51,51,1);
-    position: absolute;
-    top: 0.28rem;
-    left: 0.41rem;
-}
-.list .item p:nth-child(2){
-    font-size:0.22rem;
-    font-family:PingFang SC;
-    font-weight:400;
-    color:rgba(153,153,153,1);
-    position: absolute;
-    left: 0.41rem;
-    top: 0.72rem;
-}
-.increment{
-    margin-left: 2.3rem;
+    color:#999999 ;
 }

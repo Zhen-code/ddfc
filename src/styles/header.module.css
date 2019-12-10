@@ -6,7 +6,7 @@
     justify-content: space-around;
     align-items: center;
     background-color: #FFFFFF;
-    padding: 0 0.43rem;
+    padding: 0px 30px 0 21px;
 }
 .header span:nth-child(1){
     font-size: 6vw;

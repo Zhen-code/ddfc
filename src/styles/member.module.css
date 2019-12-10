@@ -55,7 +55,7 @@
     padding: 0 10px;
 }
 .recommend_List .item{
-    width: 356px;
+    width: 100%;
     padding: 14px 46px 13px 20px;
     display: flex;
     flex-direction: column;
