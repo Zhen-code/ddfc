@@ -11,18 +11,19 @@ export default class Member extends React.PureComponent {
             team_director:[],
             left: 6,
             pageIndex: 1,
-            pageSize: 12
+            pageSize: 12,
+            token: ''
         }
-        this.token=storage.getItem('token')
+        // this.token=storage.getItem('token')
     }
     getMember=(id)=>{
         window.show();
-        const {pageIndex,pageSize}=this.state;
+        const {pageIndex,pageSize,token}=this.state;
         window.axios({
             url:window.API.Inviter.iniviter_list+`?pageIndex=${pageIndex}&pageSize=${pageSize}`,
             method: 'GET',
             headers:{
-                'Authorization': this.token
+                'Authorization': token
             }
         }).then(res=>{
                if(res.code===200){
@@ -37,6 +38,13 @@ export default class Member extends React.PureComponent {
         })
     }
     componentDidMount() {
+        let url=document.location.href;
+        let new_url=url.substring(url.lastIndexOf('?')+1);
+        let arr=new_url.split('=');
+        let token=arr[1];
+        this.setState({
+            token
+        })
 
     }
 
@@ -64,7 +72,6 @@ export default class Member extends React.PureComponent {
                     </div>
                         <div>用户信息：欧阳  13954474472</div>
                     </li>
-                    <li></li>
                 </ul>
             </div>
         )

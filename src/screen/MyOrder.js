@@ -11,24 +11,32 @@ export default class MyOrder extends React.PureComponent {
         this.state = {
             list:[],
             countAll: 0,
-            countMoney:0
+            countMoney:0,
+            token: ''
         }
-        this.token=storage.getItem('token')
+        // this.token=storage.getItem('token')
     }
     componentDidMount() {
+        let url=document.location.href;
+        let new_url=url.substring(url.lastIndexOf('?')+1);
+        let arr=new_url.split('=');
+        let token=arr[1];
         let countAll=0,countMoney=0;
+        this.setState({
+            token
+        })
         window.axios({
             url:window.API.Crowd_funding.order_list+'?pageIndex='+1+'&pageSize='+12,
             method: 'GET',
             headers:{
-                'Authorization': this.token
+                'Authorization': token
             }
         }).then(res=>{
            if(res.code===200){
                if(res.data.list){
                    res.data.list.map(item=>{
-                 return countAll+=item.crowdfundingSell,//获取总数量
-                        countMoney+=(item.crowdfundingSell*item.crowdfundingPartPrice)//获取总钱数
+                       countAll+=item.crowdfundingSell;
+                       countMoney+=(item.crowdfundingSell*item.crowdfundingPartPrice)//获取总数量//获取总钱数
                    })
                }
                // console.log(res.data.list)
@@ -43,7 +51,8 @@ export default class MyOrder extends React.PureComponent {
         })
     }
     goDetail(id){
-        this.props.history.push('/OfflineOrder/'+id)
+        const {token}=this.state
+        this.props.history.push({pathname:'/OfflineOrder',query:{id:id,token:token}});
     }
     render() {
         const {list,countAll,countMoney} =this.state;

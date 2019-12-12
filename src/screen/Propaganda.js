@@ -1,31 +1,22 @@
 import React from 'react';
+import {Fragment} from 'react';
 import Header from "../components/common/Header";
-import style from "../styles/propaganda.css";
+import style from "../styles/propaganda.module.css";
 import shop from "../assets/image/shop.png";
-export default class Home extends React.PureComponent {
-    constructor(props) {
-        super(props);
-        this.state = {
-
-        }
-    }
-    componentDidMount() {
-
-    }
-
+export default class Propaganda extends React.PureComponent {
     render() {
         return (
-            <div>
+            <Fragment>
                 <Header/>
                 <div className={style.container}>
-                    <div className={style.img}>
-                        <img src={shop} alt={"商品"}/>
+                    <div>
+                        <img src={shop} alt={"商品"} className={style.img}/>
                     </div>
                     <div className={style.content}>
                         美好嘟嘟房车宣传页
                     </div>
                 </div>
-            </div>
+            </Fragment>
         )
     }
 

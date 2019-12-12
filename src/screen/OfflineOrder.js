@@ -21,20 +21,25 @@ export default class OfflineOrder extends React.PureComponent {
             memberPhone: '',
             memberRealName: ''
         };
-        this.token=storage.getItem('token')
+        // this.token=storage.getItem('token')
     }
     componentWillMount(){
-        const query= this.props.match.params;
+        // let url=document.location.href;
+        // let new_url=url.substring(url.lastIndexOf('?')+1);
+        // let arr=new_url.split('=');
+        // let token=arr[1];
+        const query= this.props.location.query;
         const id=query.id;
+        const token=query.token;
           window.axios({
               url: window.API.Crowd_funding.query_order+id,
               method: 'GET',
               headers:{
-                  'Authorization': this.token
+                  'Authorization': token
               }
           }).then(res=>{
-              const path=res.path;
-              const id=path.substring(path.lastIndexOf('/')+1)//获取id值
+              // const path=res.path;
+              // const id=path.substring(path.lastIndexOf('/')+1)//获取id值
               // console.log(res)
               setTimeout(()=>{
                   this.setState({

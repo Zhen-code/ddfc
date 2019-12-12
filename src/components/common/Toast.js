@@ -4,7 +4,7 @@ export default class Toast extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            text: '请求成功',
+            text: '',
             show: false
         };
         window.showToast = (text) => {

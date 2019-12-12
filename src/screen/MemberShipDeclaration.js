@@ -18,26 +18,27 @@ export default class MemberShipDeclaration extends React.PureComponent {
             partPrice: 0,//单价
             countAll: 0,//订单数量
             balancePayment: 0,//尾款
-            crowdfundingCashPledgePrice: 0//众筹房车定金
+            crowdfundingCashPledgePrice: 0,//众筹房车定金
+            token: ''
         }
-        this.token=storage.getItem('token')
-        this.addInvite=this.addInvite.bind(this)
-        this.goPay=this.goPay.bind(this)
+        // this.token=storage.getItem('token')
+        this.addInvite=this.addInvite.bind(this);
+        this.goPay=this.goPay.bind(this);
     }
     addInvite(){
-        const {name,phone,inviteName} =this.state
+        const {name,phone,inviteName,token} =this.state;
         if(name===''||inviteName===''){
-            window.showToast('姓名不能为空!')
+            window.showToast('姓名不能为空!');
             return
-        }else if(phone.length!=11){
-            window.showToast('请输入正确的手机号码!')
+        }else if(phone.length!==11){
+            window.showToast('请输入正确的手机号码!');
             return
         }
         window.axios({
             url:window.API.Inviter.member+'?inviterPhone='+phone+'&realName='+inviteName,
             method:'POST',
             headers:{
-                'Authorization':this.token
+                'Authorization': token
             }
         }).then(res=>{
             window.showToast(res.msg)
@@ -55,22 +56,30 @@ export default class MemberShipDeclaration extends React.PureComponent {
         }
     }
     componentDidMount() {
+        let url=document.location.href;
+        let new_url=url.substring(url.lastIndexOf('?')+1);
+        let arr=new_url.split('=');
+        let token=arr[1];
+        this.setState({
+            token
+        });
         let balancePayment=0,crowdfundingCashPledgePrice=0;
             window.axios({
                 url: window.API.Crowd_funding.order_list+'?pageIndex='+1+'&pageSize='+12,//查询已选订单
                 method: 'GET',
                 headers: {
-                    'Authorization': this.token
+                    'Authorization': token
                 }
             }).then(res=>{
                    const newList=res.data.list.filter(function (item) {
-                        if(item.status==1){
+                        if(item.status===1){
                             return item;//获取已选套餐数组
                         }
                    });
                    newList.map(item=>{
                        balancePayment+= item.balancePayment;//获取尾款
                        crowdfundingCashPledgePrice+=item.crowdfundingCashPledgePrice//获取定金
+                       return item
                    });
                 this.setState({
                     orderList:newList,

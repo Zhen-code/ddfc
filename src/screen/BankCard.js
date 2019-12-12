@@ -1,4 +1,5 @@
 import React from 'react';
+// import {BrowserRouter as Router, Link, useLocation} from 'react-router-dom';
 import storage from "../util/setStorage";
 import style from '../styles/bankcard.module.css';
 import Header from "../components/common/Header";
@@ -9,6 +10,7 @@ export default class AlterBankCard extends React.PureComponent {
         this.state = {
             phone: '17820563432',
             token:'',
+            dududou:'',
             captcha: '',
             bankCardNo:'',
             bankName:'',
@@ -16,9 +18,9 @@ export default class AlterBankCard extends React.PureComponent {
         }
     }
     getCaptcha(){
-        const {phone,token}=this.state
+        const {token}=this.state;
         window.axios({
-            url: window.API.Mine.captcha+`?${phone}`,
+            url: window.API.Withdraw.withdraw_captcha,
             method: 'POST',
             headers: {
                 'Authorization': token
@@ -37,18 +39,46 @@ export default class AlterBankCard extends React.PureComponent {
             captcha: e.target.value
         })
     }
-    // 银行卡修改提交
-    commit=()=>{
-        const {token,captcha}=this.state
-    }
     alterBank=()=>{
-        this.props.history.push('/AlterBankCard')
+        const {token}=this.state;
+        this.props.history.push({pathname:'/AlterBankCard',query:{token:token}})
+    }
+    // 提交申请
+    commit=()=>{
+        const {token,captcha,dududou}=this.state;
+        if(captcha===''){
+            window.showToast('验证码不能为空!')
+            return
+        }
+        window.axios({
+            url: window.API.Withdraw.withdraw+'?captcha='+captcha+'&dudu='+dududou,
+            method: 'POST',
+            headers:{
+                'Authorization': token
+            }
+        }).then(res=>{
+            if(res.code===200){
+                window.showToast('提现成功!')
+            }else{
+                window.showToast('提现失败!')
+            }
+        }).catch(err=>{
+
+        })
     }
     componentDidMount() {
-        const dududou=this.props.match.params.dd;//获取嘟嘟豆提现跳转过来的数据
-        const token=storage.getItem('token')
+        let money=this.props.location.query.money;
+        if(money){
+            money=this.props.location.query.money
+        }else{
+            money=0
+        }
+        const dududou=money;//获取嘟嘟豆提现跳转过来的数据
+        const token=this.props.location.query.token;
+        // const token=storage.getItem('token')
         this.setState({
-            token
+            token,
+            dududou
         })
         window.axios({
             url:window.API.BankCard.bank_card,//获取绑定的银行卡
@@ -74,7 +104,7 @@ export default class AlterBankCard extends React.PureComponent {
         })
     }
     render() {
-        const {bankCardNo,bankName,holder}=this.state;
+        const {bankCardNo,bankName}=this.state;
         return (
             <div>
                 <Header/>

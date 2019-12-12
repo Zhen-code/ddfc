@@ -7,16 +7,26 @@ export default class Home extends React.PureComponent {
         super(props);
         this.state = {
             money: 0,
-            duduDou: 0
+            duduDou: 0,
+            token:''
         }
-        this.token=storage.getItem('token')
+
+        this.goCommit=this.goCommit.bind(this)
     }
     componentDidMount() {
+        // let token=storage.getItem('token')
+        let url=document.location.href;
+        let new_url=url.substring(url.lastIndexOf('?'));
+        let arr=new_url.split('=');
+        let token=arr[1];
+        this.setState({
+            token
+        })
         window.axios({
             url: window.API.Mine.info,
             method:'GET',
             headers:{
-                'Authorization': this.token
+                'Authorization': token
             }
         }).then(res=>{
             if(res.code===200){
@@ -34,17 +44,17 @@ export default class Home extends React.PureComponent {
     }
 
     handler=(e)=>{
-        const money=e.target.value
+        const money=e.target.value;
         this.setState((preState)=>{
             preState.money=money
         })
     }
     goCommit(){
-        const {duduDou} =this.state
-        this.props.history.push('/BankCard/'+duduDou)
+        const {money,token} =this.state;
+        this.props.history.push({pathname:"/BankCard",query:{money:money,token:token}})
     }
     render() {
-        const {money,duduDou}=this.state;
+        const {duduDou}=this.state;
         return (
             <div>
                 <Header/>
@@ -60,7 +70,7 @@ export default class Home extends React.PureComponent {
                             <div className={style.tx}>全部提现</div>
                         </div>
                     </div>
-                    <div className={style.cash_withdrawal} onClick={this.goCommit.bind(this)}>提现到银行卡</div>
+                    <div className={style.cash_withdrawal} onClick={this.goCommit}>提现到银行卡</div>
                 </div>
             </div>
 

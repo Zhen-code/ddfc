@@ -20,7 +20,6 @@ export default class Router extends Component{
     constructor(props){
         super(props);
         this.state = {
-
         }
     }
 
@@ -30,18 +29,19 @@ export default class Router extends Component{
                 <Switch>
                     <Route path={'/'} exact component={Home}/>
                     <Route path={'/AboutUs'} exact component={AboutUs}/>
-                    <Route path={'/BankCard'} exact component={BankCard}/>
-                    <Route path={'/Member'} exact component={Member}/>
-                    <Route path={'/AlterBankCard'} exact component={AlterBankCard}/>
-                    <Route path={'/DDList'} exact component={DDList}/>
-                    <Route path={'/DDWallet'} exact component={DDWallet}/>
-                    <Route path={'/Propaganda'} exact component={Propaganda}/>
-                    <Route path={'/DetailsTransfer'} exact component={DetailsTransfer}/>
-                    <Route path={'/MyOrder'} exact component={MyOrder}/>
-                    <Route path={'/OfflineOrder'} exact component={OfflineOrder}/>
-                    <Route path={'/MemberShipDeclaration'} exact component={MemberShipDeclaration}/>
-                    <Route path={'/MyIncome'} exact component={MyIncome}/>
-                    <Route path={'/DeclarationOfflinePayment'} exact component={DeclarationOfflinePayment}/>
+                    <Route path={'/DDWallet'} exact component={DDWallet}/>{/*嘟嘟钱包*/}
+                    <Route path={'/BankCard'} exact component={BankCard}/>{/*银行卡*/}
+                    <Route path={'/AlterBankCard'} exact component={AlterBankCard}/>{/*银行卡修改添加*/}
+                    <Route path={'/Member'} exact component={Member}/>{/*嘟嘟会员*/}
+                    <Route path={'/DDList'} exact component={DDList}/>{/*嘟嘟豆记录*/}
+                    <Route path={'/Propaganda'} exact component={Propaganda}/>{/*嘟嘟宣传页*/}
+                    <Route path={'/DetailsTransfer'} exact component={DetailsTransfer}/>{/*提现转账明细*/}
+                    <Route path={'/MyOrder'} exact component={MyOrder}/>{/*我的订单*/}
+                    <Route path={'/OfflineOrder'} exact component={OfflineOrder}/>{/*订单详情*/}
+                    <Route path={'/MemberShipDeclaration'} exact component={MemberShipDeclaration}/>{/*嘟嘟会员报单*/}
+                    <Route path={'/MyIncome'} exact component={MyIncome}/>{/*获取我的收益*/}
+                    <Route path={'/DeclarationOfflinePayment'} exact component={DeclarationOfflinePayment}/>{/*嘟嘟会员报单线下付款
+*/}
                 </Switch>
             </HashRouter>
         )

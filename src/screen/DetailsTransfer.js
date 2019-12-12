@@ -10,17 +10,21 @@ export default class DetailsTransfer extends React.PureComponent{
         this.state={
             withdraw_log: []
         }
-        this.token=storage.getItem('token')
+        // this.token=storage.getItem('token')
     }
     componentDidMount() {
+        let url=document.location.href;
+        let new_url=url.substring(url.lastIndexOf('?')+1);
+        let arr=new_url.split('=');
+        let token=arr[1];
            window.axios({
                url: window.API.Withdraw.withdraw_log,
                method: 'GET',
                headers:{
-                   'Authorization': this.token
+                   'Authorization': token
                }
            }).then(res=>{
-               console.log(res)
+               // console.log(res)
                if(res.code===200){
                    window.showToast('获取提现记录成功!');
                    if(res.data.list.length===0){

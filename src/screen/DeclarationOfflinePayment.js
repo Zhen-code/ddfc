@@ -2,9 +2,6 @@ import React from 'react';
 import Header from "../components/common/Header"
 import style from "../styles/declarationofflinepayment.module.css"
 export default class DeclarationOfflinePayment extends React.PureComponent {
-    constructor(props) {
-        super(props);
-    }
     render() {
         return (
             <div style={{background:'#EDEDED'}}>

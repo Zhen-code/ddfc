@@ -13,7 +13,7 @@
         }
     </style>
 </head>
-<script>
+<script type="text/javascript">
     setTimeout(()=>{
         !(function(doc, win) {
             let docEle = doc.documentElement,
@@ -27,10 +27,12 @@
             win.addEventListener(evt, fn, false);
             doc.addEventListener("DOMContentLoaded", fn, false);
         }(document, window));
-    },300)
+    },600)
+    function show(){
+        document.getElementById("temp").innerHTML = "Hello world";
+    }
 </script>
 <body>
-<noscript>You need to enable JavaScript to run this app.</noscript>
 <div id="root"></div>
 </body>
 

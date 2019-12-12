@@ -1,34 +1,67 @@
 import React from 'react';
-import style from '../../styles/order_item.css'
+import {Fragment} from 'react';
+import style from '../../styles/order_item.module.css'
 import shop from "../../assets/image/shop.png";
-export default class Home extends React.PureComponent {
+export default class Home extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            pState:{}
         }
     }
+    componentDidMount() {
+        this.setState({
+            pState:  this.props.state
+        })
+    }
+
     render() {
+        const {pState}= this.state;
+        const status=pState.status;
+        let newStatu;
+        if(status!==0){
+            switch (status) {
+                case 1:
+                    newStatu='未确认';
+                    break;
+                case 2:
+                    newStatu='订单取消';
+                    break;
+                case 3:
+                    newStatu= '押金支付成功';
+                    break;
+                case 4:
+                    newStatu='订单完成';
+                    break;
+                default:
+                    newStatu='订单异常';
+                    break;
+            }
+        }
         return (
+            <Fragment>
                 <div className={style.item}>
-                    <p className={style.order_number}>
-                        <span>订单号：602934253603</span>
-                        <button>待确认</button>
-                    </p>
-                    <div className={style.containers}>
+                    <div className={style.order_number}>
+                        <span>订单号：{pState.orderNo}</span>
+                        <button>{newStatu}</button>
+                    </div>
+                    <div className={style.detail}>
                         <div className={style.image}>
                             <img src={shop} alt={"商品"}/>
                         </div>
                         <div className={style.content}>
-                            <p>DrF-高型房车<span>ｘ4</span></p>
-                            <p>申请时间：2019-10-03</p>
-                            <p className={style.price}>单价：20000.00元／份</p>
+                            <div>{pState.crowdfundingName}<span>ｘ{pState.number}</span></div>
+                            <div>申请时间：{pState.createDate}</div>
+                            <div>单价：{pState.crowdfundingPartPrice}元／份</div>
                         </div>
                         <div className={style.right_price}>
-                            <p>¥80000.00</p>
+                            <p>¥{pState.number*pState.crowdfundingPartPrice}</p>
                         </div>
                     </div>
                 </div>
+                {/*<div className={style.PledgePrice}>已支付订金：¥7000.00</div>*/}
+                {/*<div className={style.balancePayment}>待支付尾款：¥73000.00</div>*/}
+            </Fragment>
         )
     }
 

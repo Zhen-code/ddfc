@@ -26,7 +26,6 @@ export default class Home extends React.PureComponent {
         }
     }
      add(){
-        console.log(222)
         const {bankCardNo,holder,token}=this.state;
         if(bankCardNo.length!==18 && holder===''){
             window.showToast('银行卡号或持卡人姓名有误！')
@@ -54,12 +53,11 @@ export default class Home extends React.PureComponent {
         }
     }
      componentDidMount() {
-        const token= storage.getItem('token');
-        if(token!=''){
+        const token=  this.props.location.query.token;
+        // storage.setItem('token',token);
             this.setState({
                 token
             })
-        }
     }
     render() {
         return (

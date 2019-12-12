@@ -395,7 +395,6 @@ module.exports = function (webpackEnv) {
                             exclude: cssModuleRegex,
                             use: getStyleLoaders({
                                 importLoaders: 1,
-                                modules: true,
                                 sourceMap: isEnvProduction && shouldUseSourceMap,
                             }),
                             // Don't consider CSS imports dead code even if the
@@ -468,6 +467,10 @@ module.exports = function (webpackEnv) {
                         // Make sure to add the new loader(s) before the "file" loader.
                     ],
                 },
+                { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file-loader" },  //添加
+                { test: /\.(woff|woff2)$/, loader:"url-loader?prefix=font/&limit=5000" }, //添加
+                { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url-loader?limit=10000&mimetype=application/octet-stream" }, //添加
+                { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url-loader?limit=10000&mimetype=image/svg+xml" } //添加
             ],
         },
         plugins: [

@@ -10,14 +10,18 @@ export default class MyIncome extends React.PureComponent {
             sumProfit: 0,//总收益
             profitList:[]//收益列表数据
         }
-        this.token= storage.getItem('token')
+        // this.token= storage.getItem('token')
     }
     componentDidMount() {
+        let url=document.location.href;
+        let new_url=url.substring(url.lastIndexOf('?')+1);
+        let arr=new_url.split('=');
+        let token=arr[1];
         window.axios({
             url: window.API.Dudu.profit_log,
             method:'GET',
             headers:{
-                'Authorization': this.token
+                'Authorization': token
             }
         }).then(res=>{
             if(res.code===200){
@@ -31,7 +35,7 @@ export default class MyIncome extends React.PureComponent {
                 url: window.API.Dudu.profit_list,
                 method:'GET',
                 headers:{
-                    'Authorization': this.token
+                    'Authorization': token
                 }
             }).then(res=>{
                 if(res.code===200){
@@ -56,23 +60,32 @@ export default class MyIncome extends React.PureComponent {
         return (
             <div>
                 <Header/>
-                <div className={style.total}>
-                    <div>总收益：<span>{sumProfit}</span>嘟嘟豆</div>
-                    <div>已收益天数：<span>{profitDay}</span>天</div>
+                <div className={style.container}>
+                    <div className={style.profit}>
+                        <span>总收益：<label>{sumProfit}</label>嘟嘟豆</span>
+                        <span>已收益天数：<label>{profitDay}</label>天</span>
+                    </div>
+                    <div className={style.time}>
+                        <span>2019-10-12</span>
+                        <span>收入 +20.2</span>
+                    </div>
+                    <ul className={style.list}>
+                        <li>
+                            <div>
+                                <span>房车70万套餐购买返利</span>
+                                <span>+8.7</span>
+                            </div>
+                            <div>类型：房车购买每月返利</div>
+                        </li>
+                        <li>
+                            <div>
+                                <span>房车70万套餐购买返利</span>
+                                <span>+8.7</span>
+                            </div>
+                            <div>类型：房车购买每月返利</div>
+                        </li>
+                    </ul>
                 </div>
-                <div className={style.time}>
-                    <span>2019-10-12</span><span>收入<span className={style.income}>+20.2</span></span>
-                </div>
-                <ul className={style.list}>
-                    <li className={style.item}>
-                        <div><span>房车70万套餐购买返利</span><span className={style.increment}>+8.7</span></div>
-                        <div>类型：房车购买每月返利</div>
-                    </li>
-                    <li className={style.item}>
-                        <div><span>房车70万套餐购买返利</span><span className={style.increment}>+8.7</span></div>
-                        <div>类型：房车购买每月返利</div>
-                    </li>
-                </ul>
             </div>
         )
     }

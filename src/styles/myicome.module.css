@@ -1,58 +1,39 @@
-.total{
-    width:7.5rem;
-    height:100px;
-    background:rgba(255,255,255,1);
-    box-shadow:-0.04rem 0.04rem 0.13rem 0px rgba(0, 0, 0, 0.04);
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    margin-bottom: 0.31rem;
+.container{
+    padding: 25px 18px 0px 16px;
 }
-.total div{
-    font-size:0.3rem;
+.profit{
+    display: flex;
+    justify-content: space-between;
+}
+.profit label{
+    font-size:23px;
     font-family:PingFang SC;
     font-weight:400;
-    color:rgba(51,51,51,1);
-}
-.total div span{
-    color: #FF0000;
-    font-size: 20px;
+    color:#FF0000;
 }
 .time{
-    font-size:0.32rem;
-    font-family:PingFang SC;
-    font-weight:400;
-    color:rgba(56,56,56,1);
+    padding: 29px 15px 13px 20px;
     display: flex;
-    justify-content: space-between;
-    padding: 30px 15px 15px 20px;
-}
-.time .income{
-    font-size:0.4rem;
-    font-family:PingFang SC;
-    font-weight:400;
-    color:#0072FF;
+    justify-content: space-around;
 }
 .list{
-    width:7.12rem;
+    list-style: none;
     background:rgba(255,255,255,1);
-    box-shadow:-0.04rem 0.04rem 0.13rem 0px rgba(0, 0, 0, 0.09);
-    border-radius:0.1rem;
-    margin-left: 0.22rem;
+    box-shadow:-2px 2px 6px 0px rgba(0, 0, 0, 0.09);
+    border-radius:5px;
 }
-.list .item{
-    border-bottom:1px solid rgba(225,225,225,1);
-    display: flex;
-    flex-direction: column;
-    padding: 14px 14px 11px 11px;
+.list li{
+    padding: 14px 9px 11px 9px;
+    border-bottom: 1px solid #ccc;
 }
-.list .item div:nth-child(1){
+.list li div:nth-child(1){
     display: flex;
     justify-content: space-between;
+    margin-bottom: 4px;
 }
-.list .item div:nth-child(2){
+.list li div:nth-child(2){
     font-size:11px;
     font-family:PingFang SC;
     font-weight:400;
-    color:#999999 ;
+    color:rgba(153,153,153,1);
 }
