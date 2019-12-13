@@ -64,7 +64,7 @@ export default class OfflineOrder extends React.PureComponent {
     }
     render() {
         const state= this.state;
-        // console.log(state)
+
         return (
             <Fragment>
                 <Header/>
