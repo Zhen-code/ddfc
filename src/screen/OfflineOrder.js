@@ -1,10 +1,10 @@
 import React from 'react';
 import {Fragment} from 'react';
 import Header from "../components/common/Header";
-import storage from "../util/setStorage";
 import OrderItem from "../components/common/Order_Item";
 import UserInfo from "../components/common/UserInfo";
 import style from "../styles/offlineorder.module.css";
+import storage from "../util/setStorage";
 export default class OfflineOrder extends React.PureComponent {
     constructor(props) {
         super(props);
@@ -21,7 +21,7 @@ export default class OfflineOrder extends React.PureComponent {
             memberPhone: '',
             memberRealName: ''
         };
-        // this.token=storage.getItem('token')
+        this.token=storage.getItem('token')
     }
     componentWillMount(){
         // let url=document.location.href;
@@ -29,13 +29,13 @@ export default class OfflineOrder extends React.PureComponent {
         // let arr=new_url.split('=');
         // let token=arr[1];
         const query= this.props.location.query;
-        const id=query.id;
-        const token=query.token;
+        // const id=query.id;
+        // const token=query.token;
           window.axios({
-              url: window.API.Crowd_funding.query_order+id,
+              url: window.API.Crowd_funding.query_order+304,
               method: 'GET',
               headers:{
-                  'Authorization': token
+                  'Authorization': this.token
               }
           }).then(res=>{
               // const path=res.path;
@@ -43,7 +43,7 @@ export default class OfflineOrder extends React.PureComponent {
               // console.log(res)
               setTimeout(()=>{
                   this.setState({
-                      id,
+                      id:0,
                       orderNo: res.data.orderNo,
                       status: res.data.status,
                       crowdfundingName: res.data.crowdfundingName,
@@ -70,8 +70,8 @@ export default class OfflineOrder extends React.PureComponent {
                 <Header/>
                 <div className={style.container}>
                     <OrderItem key={state.key} state={state}/>
-                </div>
                     <UserInfo key={state.key} userInfo={state}/>
+                </div>
             </Fragment>
         )
     }

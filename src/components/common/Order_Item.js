@@ -50,7 +50,7 @@ export default class Home extends React.Component {
                             <img src={shop} alt={"商品"}/>
                         </div>
                         <div className={style.content}>
-                            <div>{pState.crowdfundingName}<span>ｘ{pState.number}</span></div>
+                            <div><span>{pState.crowdfundingName}</span><span className={style.x}>ｘ{pState.number}</span></div>
                             <div>申请时间：{pState.createDate}</div>
                             <div>单价：{pState.crowdfundingPartPrice}元／份</div>
                         </div>
@@ -59,8 +59,6 @@ export default class Home extends React.Component {
                         </div>
                     </div>
                 </div>
-                {/*<div className={style.PledgePrice}>已支付订金：¥7000.00</div>*/}
-                {/*<div className={style.balancePayment}>待支付尾款：¥73000.00</div>*/}
             </Fragment>
         )
     }
