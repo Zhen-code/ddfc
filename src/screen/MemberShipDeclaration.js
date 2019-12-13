@@ -21,7 +21,7 @@ export default class MemberShipDeclaration extends React.PureComponent {
             crowdfundingCashPledgePrice: 0,//众筹房车定金
             token: ''
         }
-        // this.token=storage.getItem('token')
+        this.token=storage.getItem('token')
         this.addInvite=this.addInvite.bind(this);
         this.goPay=this.goPay.bind(this);
     }
@@ -59,7 +59,7 @@ export default class MemberShipDeclaration extends React.PureComponent {
         let url=document.location.href;
         let new_url=url.substring(url.lastIndexOf('?')+1);
         let arr=new_url.split('=');
-        let token=arr[1];
+        const token=arr[1];
         this.setState({
             token
         });
@@ -78,33 +78,32 @@ export default class MemberShipDeclaration extends React.PureComponent {
                    });
                    newList.map(item=>{
                        balancePayment+= item.balancePayment;//获取尾款
-                       crowdfundingCashPledgePrice+=item.crowdfundingCashPledgePrice//获取定金
+                       crowdfundingCashPledgePrice+=item.crowdfundingCashPledgePrice;//获取定金
                        return item
                    });
                 this.setState({
                     orderList:newList,
                     countAll: newList.length,
                     balancePayment,
-                    crowdfundingCashPledgePrice
+                    crowdfundingCashPledgePrice//获取定金
                 });
                 // console.log(newList)
             }).catch(err=>{
                 console.log(err)
             })
     }
-
     render() {
         const {orderList,countAll,balancePayment,crowdfundingCashPledgePrice,isChecked}=this.state;
-        console.log(isChecked)
         return (
             <Fragment>
                 <Header/>
                 <div className={style.container}>
                     <div className={style.info}>
-                        <div><p><span>*</span><label>真实姓名</label></p><input type={'text'} onChange={(e)=>{this.setState({name:e.target.value})}}/></div>
-                        <div><p><span>*</span><label>手机号</label></p><input type={'text'} onChange={(e)=>{this.setState({phone:e.target.value})}}/></div>
-                        <div><p><span>*</span><label>邀请人手机号</label></p><input type={'text'} onChange={(e)=>{this.setState({inviteName:e.target.value})}}/></div>
-                        <div className={style.add_invite} onClick={this.addInvite}>添加</div>
+                        <div><p><span>*</span><label>真实姓名:</label></p><input type={'text'} onChange={(e)=>{this.setState({name:e.target.value})}}/></div>
+                        <div><p><span>*</span><label>手机号:</label></p><input type={'text'} onChange={(e)=>{this.setState({phone:e.target.value})}}/></div>
+                        <div><p><span>*</span><label>邀请人手机号:</label></p><input type={'text'} onChange={(e)=>{this.setState({inviteName:e.target.value})}}/></div>
+                        <div className={style.btx}>*为必填项</div>
+                        {/*<button type="button" className={"btn btn-primary"} onClick={this.addInvite} style={{marginLeft:'40%',marginTop:'10%'}}>添加</button>*/}
                     </div>
                     <div className={style.selected}>
                         <div>
@@ -113,19 +112,12 @@ export default class MemberShipDeclaration extends React.PureComponent {
                     </div>
                     <div className={style.list} >
                         <ul className={style.listItem}>
-                        {
-                            orderList.map((item,index)=>{
-                                return(
                                     <li
-                                        key={index}
                                         className={style.item}>
-                                        <p><span>{item.crowdfundingName}</span><span>x1</span></p>
-                                        <p>总价：{item.crowdfundingPrice}.00元</p>
-                                        <p>单价：{item.crowdfundingPartPrice}.00元</p>
+                                        <p><span>6666666</span><span>x1</span></p>
+                                        <p>总价：666.00元</p>
+                                        <p>单价：99999.00元</p>
                                     </li>
-                                )
-                            })
-                        }
                         </ul>
                         <div className={style.package}>
                             <div><span>共{countAll}个套餐包</span><span>支付订金：<label>¥{crowdfundingCashPledgePrice}元</label></span></div>

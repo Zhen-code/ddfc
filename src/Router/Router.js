@@ -30,7 +30,7 @@ export default class Router extends Component{
                     <Route path={'/'} exact component={Home}/>
                     <Route path={'/AboutUs'} exact component={AboutUs}/>
                     <Route path={'/DDWallet'} exact component={DDWallet}/>{/*嘟嘟钱包*/}
-                    <Route path={'/BankCard'} exact component={BankCard}/>{/*银行卡*/}
+                    <Route path={'/BankCard/:money'} exact component={BankCard}/>{/*银行卡*/}
                     <Route path={'/AlterBankCard'} exact component={AlterBankCard}/>{/*银行卡修改添加*/}
                     <Route path={'/Member'} exact component={Member}/>{/*嘟嘟会员*/}
                     <Route path={'/DDList'} exact component={DDList}/>{/*嘟嘟豆记录*/}

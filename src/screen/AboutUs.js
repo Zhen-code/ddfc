@@ -1,63 +1,57 @@
 import React from 'react';
-import storage from "../util/setStorage";
 import style from '../styles/aboutUs.module.css'
 
 export default class AboutUs extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            // list: [],
-            token: ''
+            count:0,
+            counting:false
         }
-        this.token = storage.getItem('token')
+
+    }
+    phone=()=>{
+        this.send()
+    }
+    send=()=>{
+        this.setState({
+            counting:true,
+            count: 60
+        })
+        this.setInterval()
+    }
+    setInterval=()=>{
+        this.timer=setInterval(this.countDown,1000)
+    }
+    countDown=()=>{
+        const {count}=this.state
+        if(count===1){
+            this.clearInterval()
+            this.setState({
+                counting:false
+            })
+        }else{
+            this.setState({
+                counting:true, count: count-1
+            })
+        }
+    }
+    clearInterval=()=>{
+        clearInterval(this.timer)
+    }
+    componentWillUnmount() {
+        this.clearInterval()
     }
 
     render() {
+        const {count,counting}=this.state;
         return (
             <div className={style.page}>
-                {
-                    // this.state.list.map((item,index)=>{
-                    //     return(
-                    //        <p key={index}>{item}</p>
-                    //     )
-                    // })
-                }
+                <button disabled={counting} onClick={this.phone}>
+                    {counting?`${count}秒后重发`:'获取验证码'}
+                </button>
             </div>
         )
-    }
-    getData(){
-        window.axios({
-            url: window.API.Mine.login,
-            method:'POST',
-            headers:{
-                'Authorization': this.token
-            },
-            params:{
-                password: '123456',
-                phone: '17820563432'
-            }
-        }).then((res)=>{
-            console.log(res)
-            // let list = this.state.list;
-
-            // this.setState({
-            //     list: res.data
-            // },()=>{})
-            // this.setState((preState)=>{
-            //     return {
-            //        list: preState.list.push(1)
-            //     }
-            // })
-        }).catch((err)=>{
-
-        })
-    }
-    componentDidMount() {
-        window.show()
-        // window.hide();
-        window.showToast('123')
-        this.getData();
-
     }
 }
 

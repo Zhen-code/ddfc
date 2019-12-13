@@ -1,7 +1,6 @@
 import React from 'react';
 import Header from "../components/common/Header"
 import style from "../styles/member.module.css"
-import storage from "../util/setStorage";
 export default class Member extends React.PureComponent {
     constructor(props) {
         super(props);
@@ -9,33 +8,13 @@ export default class Member extends React.PureComponent {
             ordinary_users:[],
             team_manager:[],
             team_director:[],
-            left: 6,
+            left: 6,//设置下滑线左移值
             pageIndex: 1,
             pageSize: 12,
-            token: ''
+            token: '',
+            index: 0
         }
         // this.token=storage.getItem('token')
-    }
-    getMember=(id)=>{
-        window.show();
-        const {pageIndex,pageSize,token}=this.state;
-        window.axios({
-            url:window.API.Inviter.iniviter_list+`?pageIndex=${pageIndex}&pageSize=${pageSize}`,
-            method: 'GET',
-            headers:{
-                'Authorization': token
-            }
-        }).then(res=>{
-               if(res.code===200){
-                   if(res.data.list.length===0){
-                       window.showToast('暂无数据')
-                   }else{
-                       window.hide();
-                   }
-               }
-        }).catch(err=>{
-            console.log(err)
-        })
     }
     componentDidMount() {
         let url=document.location.href;
@@ -47,18 +26,21 @@ export default class Member extends React.PureComponent {
         })
 
     }
+    getMember=(id)=>{
+        this.setState({
+            index: id
+        })
 
+    }
     render() {
+        const {index}=this.state
         return (
             <div>
                 <Header/>
                 <ul className={style.role_list}>
-                    <li onClick={()=>{this.setState({left:6},()=>{this.getMember(1)})}}>普通用户</li>
-                    <span></span>
-                    <li onClick={()=>{this.setState({left:128},()=>{this.getMember(2)})}}>团队经理</li>
-                    <span></span>
-                    <li onClick={()=>{this.setState({left:246},()=>{this.getMember(3)})}}>团队总监</li>
-                    <div className={style.line} style={{left:this.state.left+'px'}}></div>
+                    <li className={style.role_list_item}>普通用户</li>
+                    <li className={style.role_list_item}  onClick={this.getMember(1)}>团队经理</li>
+                    <li className={style.role_list_item}  onClick={this.getMember(2)}>团队总监</li>
                 </ul>
                 <div className={style.recommend}>
                     <div>直推人数：<span>3</span>人</div>
@@ -66,10 +48,17 @@ export default class Member extends React.PureComponent {
                 </div>
                 <ul className={style.recommend_List}>
                     <li className={style.item}>
-        `           <div>
-                        <span>推荐类型：直推</span>
-                        <span>2019-10-12 18:56:44</span>
+                        <div className={style.recommend_type}>
+                        <div>推荐类型：直推</div>
+                        <div>2019-10-12 18:56:44</div>
                     </div>
+                        <div>用户信息：欧阳  13954474472</div>
+                    </li>
+                    <li className={style.item}>
+                        <div className={style.recommend_type}>
+                            <div>推荐类型：直推</div>
+                            <div>2019-10-12 18:56:44</div>
+                        </div>
                         <div>用户信息：欧阳  13954474472</div>
                     </li>
                 </ul>

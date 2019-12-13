@@ -1,6 +1,4 @@
 .role_list{
-    width: 375px;
-    height: 50px;
     padding: 18px 25px;
     font-size: 15px;
     font-family:PingFang SC;
@@ -9,20 +7,23 @@
     list-style: none;
     display: flex;
     justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
     position: relative;
     background:rgba(255,255,255,1);
     box-shadow:-2px 2px 7px 0px rgba(0, 0, 0, 0.04);
 }
-.role_list li{
-    position: relative;
-    height:7px;
-    border-radius:4px;
+.role_list_item+.role_list_item{
+    border-left:1px solid rgba(225,225,225,1);
 }
-.role_list li+span{
-    display: inline-block;
-    width:1px;
-    height:26px;
-    border:1px solid rgba(225,225,225,1);
+.role_list_item{
+    flex: 1;
+    text-align: center;
+    border-radius:4px;
+    border-bottom: 3px solid #FFFFFF;
+}
+.active{
+    border-bottom: 3px solid #0072FF;
 }
 .line{
     width:120px;
@@ -33,16 +34,16 @@
     top: 45px;
 }
 .recommend{
-    width: 375px;
-    padding: 23px 40px;
     display: flex;
+    flex-direction: row;
     justify-content: space-around;
-    font-size:15px;
-    font-family:PingFang SC;
-    font-weight:400;
 }
-.recommend div{
-    white-space: nowrap;
+.recommend div:nth-child(1){
+   height: 19px;
+    margin-left: 15px;
+}
+.recommend div:nth-child(2){
+    height: 19px;
 }
 .recommend div span{
     font-size:23px ;
@@ -51,21 +52,20 @@
     color:#FF0000 ;
 }
 .recommend_List{
-    width: 100vw;
-    padding: 0 10px;
+    margin-top:23px ;
+    padding:0 10px ;
 }
 .recommend_List .item{
-    width: 100%;
-    padding: 14px 46px 13px 20px;
-    display: flex;
-    flex-direction: column;
     background:rgba(255,255,255,1);
-    box-shadow:-2px 2px 7px 0px rgba(0, 0, 0, 0.09);
+    box-shadow:-2px 2px 6px 0px rgba(0, 0, 0, 0.09);
     border-radius:5px;
-    align-content: space-between;
+    margin-bottom: 18px;
+    padding:15px 46px 13px 20px;
 }
-.recommend_List .item div:nth-child(1){
+.recommend_type{
     display: flex;
     justify-content: space-between;
+}
+.recommend_type div{
     margin-bottom: 16px;
 }

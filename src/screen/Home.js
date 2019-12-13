@@ -1,5 +1,4 @@
 import React from 'react';
-// import axios from 'axios';
 import style from '../styles/home.module.css'
 import Header from "../components/common/Header"
 import storage from "../util/setStorage"
@@ -18,6 +17,7 @@ export default class Home extends React.PureComponent {
         window.showToast('6666666')
     }
     componentDidMount() {
+        // window.show();
 
     }
     login(){
@@ -31,7 +31,8 @@ export default class Home extends React.PureComponent {
     }).then((res)=>{
             if(res.code ===200){
                 window.showToast('登录成功!')
-                const token=res.data.token
+                const token=res.data.token;
+                window.token=token
                 storage.setItem('token',token)
             }
         }).catch((err)=>{
@@ -47,8 +48,10 @@ export default class Home extends React.PureComponent {
             <div>
             <Header/>
             <h3 className={style.center}>欢迎来到嘟嘟房车首页!</h3>
-                <span className={style.btn1}><button type="button" className={"btn btn-primary"} onClick={this.login}>登录</button></span>
-                <span className={style.btn2}><button type="button" className="btn btn-primary" onClick={this.register}>注册</button></span>
+                <div className={style.footer}>
+                    <span className={style.btn1}><button type="button" className={"btn btn-primary"} onClick={this.login}>登录</button></span>
+                    <span className={style.btn2}><button type="button" className="btn btn-primary" onClick={this.register}>注册</button></span>
+                </div>
             </div>
         )
     }

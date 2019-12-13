@@ -1,11 +1,12 @@
 import 'babel-polyfill'
 import React from 'react';
 import ReactDOM from 'react-dom';
-import page from './index.css';
+import page from './index.module.css';
 import './util/Api';
 import './util/axios'
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import './lib/css/bootstrap.css';
 window.page = page;
 ReactDOM.render(<App />, document.getElementById('root'));
 

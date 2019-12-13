@@ -11,23 +11,26 @@
         *{
             margin:0;padding: 0;
         }
+        #root{
+            min-width: 375px;
+        }
     </style>
 </head>
 <script type="text/javascript">
-    setTimeout(()=>{
-        !(function(doc, win) {
-            let docEle = doc.documentElement,
-                evt = "onorientationchange" in window ? "orientationchange" : "resize",
-                fn = function() {
-                    let width = docEle.clientWidth;
-                    width = width < 375 ? 375 : width;
-                    width = width > 750 ? 750 : width;
-                    width && (docEle.style.fontSize = 100 * (width / 750) + "px");
-                };
-            win.addEventListener(evt, fn, false);
-            doc.addEventListener("DOMContentLoaded", fn, false);
-        }(document, window));
-    },600)
+    // setTimeout(()=>{
+    //     !(function(doc, win) {
+    //         let docEle = doc.documentElement,
+    //             evt = "onorientationchange" in window ? "orientationchange" : "resize",
+    //             fn = function() {
+    //                 let width = docEle.clientWidth;
+    //                 width = width < 375 ? 375 : width;
+    //                 width = width > 750 ? 750 : width;
+    //                 width && (docEle.style.fontSize = 100 * (width / 750) + "px");
+    //             };
+    //         win.addEventListener(evt, fn, false);
+    //         doc.addEventListener("DOMContentLoaded", fn, false);
+    //     }(document, window));
+    // },600)
     function show(){
         document.getElementById("temp").innerHTML = "Hello world";
     }

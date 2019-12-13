@@ -1,21 +1,36 @@
 import React from 'react';
 import style from '../../styles/header.module.css';
 import fan_hui from '../../assets/image/icon_fanhui.png';
-import more from '../../assets/image/more.png'
+// import more from '../../assets/image/more.png'
 export default class Header extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state={
-            title:''
+            title:'',
+            goBack:1
         }
     }
-    goBack(){
-        window.history.back(-1)
-    }
+    goBack1=()=>{
+        console.log('一级页面');
+        window.useAndroid.back();
+    };
+    goBack2=()=>{
+        console.log(66666)
+        window.history.back(-1);
+    };
     componentDidMount() {
       let url=document.location.href;//获取当前路径url
         let start=url.indexOf('#')+2;
         let title=url.substring(start);
+        if(title==='MyOrder'||title==='DDWallet'||title==='Member'||title==='MemberShipDeclaration'||title==='MyIncome'){
+            this.setState({
+                goBack:1
+            })
+        }else{
+            this.setState({
+                goBack:2
+            })
+        }
         switch (title){
             case 'MyOrder' :
                 title='我的订单';
@@ -54,7 +69,7 @@ export default class Header extends React.PureComponent {
                 title='嘟嘟会员报单';
                 break;
             default:
-                title='首页';
+                title='';
                 break;
         }
         if(url.indexOf('OfflineOrder')!==-1){
@@ -68,14 +83,23 @@ export default class Header extends React.PureComponent {
             }
         })
     }
+    go(){
+        const {goBack}=this.state;
+        if(goBack===1){
+            this.goBack1()
+        }else{
+            this.goBack2()
+        }
+    }
     render() {
-        const {title} =this.state;
+        const {title,goBack} =this.state;
+        console.log(goBack===1)
         return (
             <div>
                 <div className={style.header}>
-                    <span onClick={this.goBack.bind(this)}><img src={fan_hui} alt={"返回"}/></span>
+                    <span onClick={this.go.bind(this)}><img src={fan_hui} alt={"返回"}/></span>
                     <span>{title}</span>
-                    <span><img src={more} alt={"更多"}/></span>
+                    <span><img/></span>
                 </div>
             </div>
         )
