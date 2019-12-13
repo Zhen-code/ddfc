@@ -1,8 +1,7 @@
 import React from 'react';
 import Header from "../components/common/Header"
 import style from "../styles/ddwallet.module.css"
-import storage from "../util/setStorage";
-export default class Home extends React.PureComponent {
+export default class DDWallet extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
@@ -14,19 +13,20 @@ export default class Home extends React.PureComponent {
         this.goCommit=this.goCommit.bind(this)
     }
     componentDidMount() {
+        // let token=window.token;
         // let token=storage.getItem('token')
         let url=document.location.href;
         let new_url=url.substring(url.lastIndexOf('?'));
         let arr=new_url.split('=');
-        let token=arr[1];
+        window.token=arr[1];
         this.setState({
-            token
+            token: arr[1]
         })
         window.axios({
             url: window.API.Mine.info,
             method:'GET',
             headers:{
-                'Authorization': token
+                'Authorization': arr[1]
             }
         }).then(res=>{
             if(res.code===200){
@@ -39,9 +39,6 @@ export default class Home extends React.PureComponent {
         })
 
     }
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        console.log(prevState)
-    }
 
     handler=(e)=>{
         const money=e.target.value;
@@ -51,19 +48,40 @@ export default class Home extends React.PureComponent {
     }
     goCommit(){
         const {money,token} =this.state;
-        this.props.history.push({pathname:"/BankCard",query:{money:money,token:token}})
+        this.props.history.push({pathname:"/BankCard/"+money})
+    }
+    check(e){
+        let temp=/^\d+\.?\d{0,2}$/
+        if(temp.test(e.target.value)){
+
+        }else{
+            let str=e.target.value.substr(0,e.target.value.length-1)
+            e.target.value=str
+        }
+    }
+    checked(e){
+        if(e.target.value.indexOf('.')!=-1){
+            let end=e.target.value.indexOf('.')
+            if(end===e.target.value.length-1){
+                let newStr=e.target.value+'00'
+                e.target.value=newStr
+            }
+        }
+
+
+
     }
     render() {
         const {duduDou}=this.state;
         return (
             <div>
                 <Header/>
-                <div className={style.content}>
-                    <div className={style.container}>
+                <div className={style.container}>
+                    <div className={style.content}>
                         <div className={style.content_head}>嘟嘟豆提现至银行卡</div>
                         <div className={style.content_center}>
                             <span>￥</span>
-                            <input type={'text'} placeholder={"0"} onChange={this.handler.bind(this)} />
+                            <input type={'text'} placeholder={"0"} onChange={this.handler.bind(this)} style={{width:'200px'}} maxLength={6} onKeyUp={this.check.bind(this)} onBlur={this.checked.bind(this)}/>
                         </div>
                         <div className={style.footer}>
                             <div className={style.dd}>嘟嘟豆：¥{duduDou}</div>
