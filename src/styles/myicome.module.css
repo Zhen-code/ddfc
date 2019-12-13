@@ -1,9 +1,16 @@
-.container{
-    padding: 25px 18px 0px 16px;
-}
 .profit{
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
+    align-items: center;
+    height:50px;
+    background:rgba(255,255,255,1);
+    box-shadow:-2px 2px 6px 0px rgba(0, 0, 0, 0.04);
+    padding: 15px 16px;
+
+}
+.container{
+    padding: 25px 18px 0px 16px;
 }
 .profit label{
     font-size:23px;
@@ -12,24 +19,39 @@
     color:#FF0000;
 }
 .time{
-    padding: 29px 15px 13px 20px;
+    height: 12px;
+    padding: 0px 14px 0px 20px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    align-items: center;
 }
 .list{
-    list-style: none;
     background:rgba(255,255,255,1);
     box-shadow:-2px 2px 6px 0px rgba(0, 0, 0, 0.09);
     border-radius:5px;
+    list-style: none;
 }
 .list li{
-    padding: 14px 9px 11px 9px;
-    border-bottom: 1px solid #ccc;
+    height: 55px;
+    padding: 14px 14px 11px 11px;
+    border-bottom: 1px solid rgba(225,225,225,1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.list li:last-child{
+    border-bottom: 0px solid rgba(225,225,225,1);
 }
 .list li div:nth-child(1){
     display: flex;
     justify-content: space-between;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
+    font-size:14px;
+    font-family:PingFang SC;
+    font-weight:400;
+    color:rgba(51,51,51,1);
+
 }
 .list li div:nth-child(2){
     font-size:11px;

@@ -1,5 +1,5 @@
 import React from 'react';
-import storage from "../util/setStorage";
+import {Fragment} from 'react';
 import Header from "../components/common/Header";
 import style from "../styles/myicome.module.css";
 export default class MyIncome extends React.PureComponent {
@@ -58,16 +58,16 @@ export default class MyIncome extends React.PureComponent {
     render() {
         const {profitDay,sumProfit}=this.state;
         return (
-            <div>
+            <Fragment>
                 <Header/>
+                <div className={style.profit}>
+                    <span>总收益：<label>{sumProfit}</label>嘟嘟豆</span>
+                    <span>已收益天数：<label>{profitDay}</label>天</span>
+                </div>
                 <div className={style.container}>
-                    <div className={style.profit}>
-                        <span>总收益：<label>{sumProfit}</label>嘟嘟豆</span>
-                        <span>已收益天数：<label>{profitDay}</label>天</span>
-                    </div>
                     <div className={style.time}>
                         <span>2019-10-12</span>
-                        <span>收入 +20.2</span>
+                        <span>收入<span style={{fontSize:'20px', color:'#0072FF'}}>+20.2</span></span>
                     </div>
                     <ul className={style.list}>
                         <li>
@@ -86,7 +86,7 @@ export default class MyIncome extends React.PureComponent {
                         </li>
                     </ul>
                 </div>
-            </div>
+            </Fragment>
         )
     }
 
