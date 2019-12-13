@@ -1,10 +1,10 @@
 import React from 'react';
 import {Fragment} from 'react';
 import Header from "../components/common/Header";
-import storage from "../util/setStorage";
 import style from "../styles/myorder.module.css";
 import shop_url from "../assets/image/shop.png";
-import picture_more from "../assets/image/picture_more.png"
+import more from "../assets/image/picture_more.png";
+import storage from "../util/setStorage";
 export default class MyOrder extends React.PureComponent {
     constructor(props) {
         super(props);
@@ -14,22 +14,22 @@ export default class MyOrder extends React.PureComponent {
             countMoney:0,
             token: ''
         }
-        // this.token=storage.getItem('token')
+        this.token=storage.getItem('token')
     }
     componentDidMount() {
-        let url=document.location.href;
-        let new_url=url.substring(url.lastIndexOf('?')+1);
-        let arr=new_url.split('=');
-        let token=arr[1];
+        // let url=document.location.href;
+        // let new_url=url.substring(url.lastIndexOf('?')+1);
+        // let arr=new_url.split('=');
+        // window.token=arr[1];
         let countAll=0,countMoney=0;
         this.setState({
-            token
+            token:  this.token
         })
         window.axios({
             url:window.API.Crowd_funding.order_list+'?pageIndex='+1+'&pageSize='+12,
             method: 'GET',
             headers:{
-                'Authorization': token
+                'Authorization':  this.token
             }
         }).then(res=>{
            if(res.code===200){
@@ -51,7 +51,7 @@ export default class MyOrder extends React.PureComponent {
         })
     }
     goDetail(id){
-        const {token}=this.state
+        const {token}=this.state;
         this.props.history.push({pathname:'/OfflineOrder',query:{id:id,token:token}});
     }
     render() {
@@ -61,33 +61,26 @@ export default class MyOrder extends React.PureComponent {
                 <Header/>
                 <div className={style.container}>
                     <ul>
-                        {
-                            list.map((item,index)=>{
-                               return (<li
-                                   onClick={this.goDetail.bind(this,item.id)}
-                               key={index}
-                               >
+                        <li>
                                     <div className={style.image}>
-                                        <img src={item.crowdfundingCover} alt={item}/>
+                                        <img src={more} />
                                     </div>
                                     <div className={style.content}>
-                                        <div>{item.name}</div>
-                                        <div>已认筹：{item.crowdfundingSell}份</div>
-                                        <div>单价：{item.crowdfundingPartPrice}元／份</div>
+                                        <div>DrF-高型房车</div>
+                                        <div>已认筹：6666份</div>
+                                        <div>单价：666元／份</div>
                                     </div>
                                     <div className={style.right_price}>
-                                        <p>¥{item.crowdfundingSell*item.crowdfundingPartPrice}</p>{/*每个订单总价*/}
+                                        <p>¥66466</p>{/*每个订单总价*/}
                                     </div>
-                                </li>)
-                            })
-                        }
+                                </li>
                     </ul>
                     <div className={style.total}>
                         <div className={style.image}>
                             <img src={shop_url}  alt={"商品"}/>
                         </div>
                         <div className={style.more}>
-                            <img src={picture_more}  alt={"商品"}/>
+                            <img src={more}/>
                         </div>
                         <div className={style.price}>
                             <div>¥{countMoney}</div>
