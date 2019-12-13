@@ -1,8 +1,7 @@
 import React from 'react';
-import Header from "../components/common/Header"
-import style from "../styles/ddlist.module.css"
-import storage from "../util/setStorage";
-export default class Home extends React.PureComponent {
+import Header from "../components/common/Header";
+import style from "../styles/ddlist.module.css";
+export default class DDList extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
@@ -47,32 +46,29 @@ export default class Home extends React.PureComponent {
                 <Header/>
                 <div className={style.container}>
                 <ul className={style.dd_list}>
-                    <li>发生日期</li>
-                    <span></span>
-                    <li>行为动作</li>
-                    <span></span>
-                    <li>数量</li>
-                    <span></span>
-                    <li className={style.balance}>余额</li>
+                    <li className={style.listItem}>发生日期</li>
+                    <li className={style.listItem}>行为动作</li>
+                    <li className={style.listItem}>数量</li>
+                    <li className={style.listItem}>余额</li>
                 </ul>
-                    <ul className={style.list_item}>
+                    <ul className={style.list}>
                         <li className={style.item}>
-                            <span>2019-10-11</span>
-                            <span>购买套餐</span>
-                            <span>+2000</span>
-                            <span>12000</span>
+                            <p>2019-10-11</p>
+                            <p>购买套餐</p>
+                            <p>+2000</p>
+                            <p>12000</p>
                         </li>
                         <li className={style.item}>
-                            <span>2019-10-11</span>
-                            <span>购买套餐</span>
-                            <span>+2000</span>
-                            <span>12000</span>
+                            <p>2019-10-11</p>
+                            <p>购买套餐</p>
+                            <p>+2000</p>
+                            <p>12000</p>
                         </li>
                         <li className={style.item}>
-                            <span>2019-10-11</span>
-                            <span>购买套餐</span>
-                            <span>+2000</span>
-                            <span>12000</span>
+                            <p>2019-10-11</p>
+                            <p>购买套餐</p>
+                            <p>+2000</p>
+                            <p>12000</p>
                         </li>
                     </ul>
                 </div>
