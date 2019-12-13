@@ -10,7 +10,7 @@ export default class MyIncome extends React.PureComponent {
             sumProfit: 0,//总收益
             profitList:[]//收益列表数据
         }
-        // this.token= storage.getItem('token')
+
     }
     componentDidMount() {
         let url=document.location.href;
