@@ -1,6 +1,5 @@
 import React from 'react';
 import {Fragment} from 'react';
-import storage from '../util/setStorage'
 import Header from "../components/common/Header";
 import style from '../styles/detailstransfer.module.css';
 import icon_jingbi from '../assets/image/icon_jingbi.png';
